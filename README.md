@@ -1,6 +1,6 @@
 <h1>Bag of Visual Words OpenCV<br></h1>
 <center><img src="./README_files/Header.png"><p style="color: #666;">
-An example of a typical bag of words classification pipeline refer to content based image classifier using the [bag of visual words model][1] in C++ with OpenCV.</p><p></p></center>
+An example of a typical bag of words classification pipeline refer to content based image classifier using the <a href="https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_vision">bag of visual words model</a> in C++ with OpenCV.</p><p></p></center>
 
 <h2>Overview</h2> 
 The goal of this project is to introduce you to image recognition. Specifically, we will examine the task of scene recognition starting with very simple methods - tiny images and nearest neighbor classification - and then move on to techniques that resemble the bags of quantized local features and linear classifiers learned by support vector machines (SVM).
@@ -22,15 +22,17 @@ This code relies on:
  - k-means for generation of the words via clustering
  - SVM as classifier using the OpenCV library
 
-The example dataset used in this project is [Caltech 101 dataset][2].
+The example dataset used in this project is [Caltech 101 dataset][1].
 <center><img src="./README_files/Caltech-101.jpg"><p style="color: #666;">
 Example images from of each category of Caltech 101.</p><p></p></center>
 
-### References:
-#### OpenCV:
-Open Source Computer Vision Library https://github.com/opencv
-#### SIFT:
-David G. Lowe, "Distinctive image features from scale-invariant keypoints," International Journal of Computer Vision, 60, 2 (2004), pp. 91-110.
+## Author
+[Hadi Abdi Khojasteh](http://hadiabdikhojasteh.ir)
 
-[1]: https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_vision
-[2]: http://www.vision.caltech.edu/Image_Datasets/Caltech101/
+## Copyright
+Copyright (c) 2018 Hadi Abdi Khojasteh
+
+## License
+GNU General Public License v3.0
+
+[1]: http://www.vision.caltech.edu/Image_Datasets/Caltech101/
