@@ -26,10 +26,13 @@ The example dataset used in this project is [Caltech 101 dataset][1].
 <center><img src="./README_files/Caltech-101.jpg"><p style="color: #666;">
 Example images from of each category of Caltech 101.</p><p></p></center>
 
-### References:
-#### OpenCV:
-Open Source Computer Vision Library https://github.com/opencv
-#### SIFT:
-David G. Lowe, "Distinctive image features from scale-invariant keypoints," International Journal of Computer Vision, 60, 2 (2004), pp. 91-110.
+## Author
+[Hadi Abdi Khojasteh](http://hadiabdikhojasteh.ir)
+
+## Copyright
+Copyright (c) 2018 Hadi Abdi Khojasteh
+
+## License
+GNU General Public License v3.0
 
 [1]: http://www.vision.caltech.edu/Image_Datasets/Caltech101/
