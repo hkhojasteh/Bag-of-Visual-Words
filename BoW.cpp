@@ -124,6 +124,20 @@ void getHistogram(string className, int imageNumbers, int classLable) {
 	}
 }
 }
+void getHistogramFast() {
+#pragma omp parallel
+{
+#pragma omp for schedule(dynamic) ordered
+	for (int i = 0; i < allDescPerImgNum; i++) {
+		Mat dvec = getDataVector(allDescPerImg[i]);
+#pragma omp critical
+		{
+			inputData.push_back(dvec);
+			inputDataLables.push_back(Mat(1, 1, CV_32SC1, allClassPerImg[i]));
+		}
+	}
+}
+}
 }
 
 int main(int argc, char **argv)
