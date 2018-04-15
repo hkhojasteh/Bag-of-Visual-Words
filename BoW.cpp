@@ -1,0 +1,1 @@
+//This program created by love by Hadi - Copyright(c) by Hadi Abdi Khojasteh. All right reserved. / Email: hkhojasteh [at] iasbs [dot] ac [dot] ir, info [at] hadiabdikhojasteh [dot] ir / Website: iasbs.ac.ir/~hkhojasteh, hadiabdikhojasteh.ir
