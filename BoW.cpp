@@ -1,5 +1,4 @@
 //This program created by love by Hadi - Copyright(c) by Hadi Abdi Khojasteh. All right reserved. / Email: hkhojasteh [at] iasbs [dot] ac [dot] ir, info [at] hadiabdikhojasteh [dot] ir / Website: iasbs.ac.ir/~hkhojasteh, hadiabdikhojasteh.ir
-<<<<<<< HEAD
 
 
 #include "stdafx.h"
@@ -91,5 +90,3 @@ int main(int argc, char **argv)
  	cin.get();
 	return(0);
 }
-=======
->>>>>>> 9bd6da33561f3c178f29c68ace7c584c55e95022
