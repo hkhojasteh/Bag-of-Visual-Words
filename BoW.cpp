@@ -75,6 +75,22 @@ void readDetectComputeimage(string className, int imageNumbers, int classLable) 
 }
 }
 
+Mat kCenters, kLabels;
+Mat getDataVector(Mat descriptors) {
+	BFMatcher matcher;
+	vector<DMatch> matches;
+	matcher.match(descriptors, kCenters, matches);
+
+	//Make a Histogram of visual words
+	Mat datai = Mat::zeros(1, DICT_SIZE, CV_32F);
+	int index = 0;
+	for (auto j = matches.begin(); j < matches.end(); j++, index++) {
+		datai.at<float>(0, matches.at(index).trainIdx) = datai.at<float>(0, matches.at(index).trainIdx) + 1;
+	}
+	return datai;
+}
+}
+
 int main(int argc, char **argv)
 {
 	cout << "Object detector started." << endl;
