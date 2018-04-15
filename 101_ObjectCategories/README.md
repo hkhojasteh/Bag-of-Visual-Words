@@ -1,0 +1,1 @@
+This folder should contain the images from each class in separated folders, such as for example crab, starfish, sunflower.
