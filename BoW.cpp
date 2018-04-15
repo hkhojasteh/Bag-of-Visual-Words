@@ -89,6 +89,41 @@ Mat getDataVector(Mat descriptors) {
 	}
 	return datai;
 }
+Mat inputData;
+Mat inputDataLables;
+void getHistogram(string className, int imageNumbers, int classLable) {
+#pragma omp parallel
+{
+#pragma omp for schedule(dynamic) ordered
+	for (int i = 1; i <= imageNumbers; i++) {
+		//If this image is test not use this in learning
+		if (i % TESTING_PERCENT_PER == 0) {
+			continue;
+		}
+		ostringstream ss;
+		Mat grayimg;
+		Ptr<xfeatures2d::SIFT> siftptr;
+		siftptr = xfeatures2d::SIFT::create();
+		//Load image, Detect and Describe features
+		ss.str("");
+		ss << std::setw(4) << std::setfill('0') << i;
+		if (fileExists(DATASET_PATH + className + "\\image_" + ss.str() + IMAGE_EXT)) {
+			cvtColor(imread(DATASET_PATH + className + "\\image_" + ss.str() + IMAGE_EXT), grayimg, CV_BGR2GRAY);
+			vector<KeyPoint> keypoints;
+			Mat descriptors;
+			siftptr->detectAndCompute(grayimg, noArray(), keypoints, descriptors);
+			
+#pragma omp critical
+			{
+				inputData.push_back(getDataVector(descriptors));
+				inputDataLables.push_back(Mat(1, 1, CV_32SC1, classLable));
+			}
+		}else{
+			break;
+		}
+	}
+}
+}
 }
 
 int main(int argc, char **argv)
