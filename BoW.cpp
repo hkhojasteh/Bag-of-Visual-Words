@@ -89,6 +89,7 @@ Mat getDataVector(Mat descriptors) {
 	}
 	return datai;
 }
+
 Mat inputData;
 Mat inputDataLables;
 void getHistogram(string className, int imageNumbers, int classLable) {
@@ -124,6 +125,7 @@ void getHistogram(string className, int imageNumbers, int classLable) {
 	}
 }
 }
+
 void getHistogramFast() {
 #pragma omp parallel
 {
@@ -136,8 +138,6 @@ void getHistogramFast() {
 			inputDataLables.push_back(Mat(1, 1, CV_32SC1, allClassPerImg[i]));
 		}
 	}
-}
-}
 }
 }
 
