@@ -141,6 +141,43 @@ void getHistogramFast() {
 }
 }
 
+Ptr<SVM> svm;
+double testData(string className, int imageNumbers, int classLable) {
+	int allTests = 0;
+	int correctTests = 0;
+#pragma omp parallel
+{
+#pragma omp for schedule(dynamic) ordered
+	for (int i = TESTING_PERCENT_PER; i <= imageNumbers; i += TESTING_PERCENT_PER) {
+		ostringstream ss;
+		Mat grayimg;
+		Ptr<xfeatures2d::SIFT> siftptr;
+		float r = 0;
+		siftptr = xfeatures2d::SIFT::create();
+		//Load image, Detect and Describe features
+		ss.str("");
+		ss << std::setw(4) << std::setfill('0') << i;
+		if (fileExists(DATASET_PATH + className + "\\image_" + ss.str() + IMAGE_EXT)) {
+			cvtColor(imread(DATASET_PATH + className + "\\image_" + ss.str() + IMAGE_EXT), grayimg, CV_BGR2GRAY);
+			vector<KeyPoint> keypoints;
+			Mat descriptors;
+			siftptr->detectAndCompute(grayimg, noArray(), keypoints, descriptors);
+			Mat dvector = getDataVector(descriptors);
+#pragma omp critical
+			{
+				allTests++;
+				if (svm->predict(dvector) == classLable) {
+					correctTests++;
+				}
+			}
+		}else{
+			break;
+		}
+	}
+}
+return (double)correctTests / allTests;
+}
+
 int main(int argc, char **argv)
 {
 	cout << "Object detector started." << endl;
