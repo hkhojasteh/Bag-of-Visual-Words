@@ -189,7 +189,55 @@ int main(int argc, char **argv)
 	//readDetectComputeimage("trilobite", 86, 4);
 	cout << "-> Reading, Detect and Describe input in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
 
-	cout << "\nObject detector demo ended. press any key for exit.\nFor more information contact hkhojasteh@iasbs.ac.ir";
+	/*int clusterCount = DICT_SIZE, attempts = 5, iterationNumber = 1e4;
+	sTime = clock();
+	cout << "Running kmeans..." << endl;
+	kmeans(allDescriptors, clusterCount, kLabels, TermCriteria(CV_TERMCRIT_ITER | CV_TERMCRIT_EPS, iterationNumber, 1e-4), attempts, KMEANS_PP_CENTERS, kCenters);
+	cout << "-> kmeans run in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
+
+	FileStorage storage("kmeans-starfish,sunflower,crab,trilobite.yml", FileStorage::WRITE);
+	storage << "kLabels" << kLabels << "kCenters" << kCenters;
+	storage.release();*/
+
+	sTime = clock();
+	cout << "Loading kmeans data..." << endl;
+	FileStorage storage("kmeans-starfish,sunflower,crab,trilobite.yml", FileStorage::READ);
+	storage["kLabels"] >> kLabels;
+	storage["kCenters"] >> kCenters;
+	storage.release();
+	cout << "-> kmeans data loaded in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
+
+	sTime = clock();
+	cout << "Finding histograms..." << endl;
+	getHistogramFast();
+	/*getHistogram("starfish", 86, 1);
+	getHistogram("sunflower", 85, 2);
+	getHistogram("crab", 75, 3);
+	getHistogram("trilobite", 86, 4);*/
+	cout << "-> Histograms find in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
+
+	sTime = clock();
+	cout << "SVM training..." << endl;
+	// Set up SVM's parameters
+	svm = SVM::create();
+	svm->setType(SVM::C_SVC);
+	svm->setKernel(SVM::LINEAR);
+	svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 1e4, 1e-6));
+	// Train the SVM with given parameters
+	Ptr<TrainData> td = TrainData::create(inputData, ROW_SAMPLE, inputDataLables);
+	svm->train(td);
+	cout << "-> SVM trained in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
+
+	sTime = clock();
+	cout << "Testing images..." << endl;
+	cout << "-> " << (float)(testData("starfish", 86, 1) * 100) << "% accuracy in 'starfish' class." << endl;
+	cout << "-> " << (float)(testData("sunflower", 85, 2) * 100) << "% accuracy in 'sunflower' class." << endl;
+	//cout << "-> " << (float)(testData("crab", 75, 3) * 100) << "% accuracy in 'crab' class." << endl;
+	//cout << "-> " << (float)(testData("trilobite", 86, 4) * 100) << "% accuracy in 'trilobite' class." << endl;
+	cout << "-> Test completed in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
+	
+	//imwrite("sift_result.jpg", output);
+	cout << "\nObject detector demo ended. press any key for exit.\nFor more information contact hkhojasteh [at] iasbs [dot] ac [dot] ir";
  	cin.get();
 	return(0);
 }
