@@ -22,11 +22,11 @@ The learning consists of:
 
 This code relies on:
 
-- 
+1.
     SIFT features for local features
-- 
+2.
     k-means for generation of the words via clustering
-- 
+3.
     SVM as classifier using the OpenCV library
 
 The example dataset used in this project is [Caltech 101 dataset][1].
