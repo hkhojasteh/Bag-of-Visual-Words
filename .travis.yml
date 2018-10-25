@@ -1,0 +1,91 @@
+language: cpp
+sudo: required
+
+matrix:
+  include:
+    # Linux GCC 6 build
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      env:
+        - COMPILER='g++-6'
+
+    # Linux GCC 7 build
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - COMPILER='g++-7'
+
+    # Linux Clang 4 build
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - clang-4.0
+      env:
+        - COMPILER='clang++-4.0'
+
+    # Linux Clang 5 build
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - clang-5.0
+      env:
+        - COMPILER='clang++-5.0'
+
+    # OS X Xcode8 GCC build
+    - os: osx
+      osx_image: xcode8.3
+      compiler: gcc
+      env:
+        - COMPILER='g++'
+
+    # OS X Xcode9 GCC build
+    - os: osx
+      osx_image: xcode9.2
+      compiler: gcc
+      env:
+        - COMPILER='g++'
+
+    # OS X Xcode8 Clang build
+    - os: osx
+      osx_image: xcode8.3
+      compiler: clang
+      env:
+        - COMPILER='clang++'
+
+    # OS X Xcode9 Clang build
+    - os: osx
+      osx_image: xcode9.2
+      compiler: clang
+      env:
+        - COMPILER='clang++'
+
+before_install:
+  - export CXX=${COMPILER}
+
+install: true
+
+script:
+  - |
+    cd C++
+    make
+    make test
