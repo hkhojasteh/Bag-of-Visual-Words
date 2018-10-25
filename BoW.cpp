@@ -13,6 +13,9 @@
 #include <iostream>
 #include <iomanip>
 #include <math.h>
+#include <omp.h>  
+
+#define NUM_THREADS 8  
 
 using namespace std;
 using namespace cv;
@@ -32,7 +35,7 @@ Mat allDescriptors;
 vector<Mat> allDescPerImg;
 vector<int> allClassPerImg;
 int allDescPerImgNum = 0;
-void readDetectComputeimage(string className, int imageNumbers, int classLable) {
+void readDetectComputeimage(const string className, int imageNumbers, int classLable) {
 #pragma omp parallel
 {
 #pragma omp for schedule(dynamic) ordered
@@ -92,7 +95,7 @@ Mat getDataVector(Mat descriptors) {
 
 Mat inputData;
 Mat inputDataLables;
-void getHistogram(string className, int imageNumbers, int classLable) {
+void getHistogram(const string className, int imageNumbers, int classLable) {
 #pragma omp parallel
 {
 #pragma omp for schedule(dynamic) ordered
@@ -142,7 +145,7 @@ void getHistogramFast() {
 }
 
 Ptr<SVM> svm;
-double testData(string className, int imageNumbers, int classLable) {
+double testData(const string className, int imageNumbers, int classLable) {
 	int allTests = 0;
 	int correctTests = 0;
 #pragma omp parallel
@@ -189,23 +192,23 @@ int main(int argc, char **argv)
 	//readDetectComputeimage("trilobite", 86, 4);
 	cout << "-> Reading, Detect and Describe input in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
 
-	/*int clusterCount = DICT_SIZE, attempts = 5, iterationNumber = 1e4;
+	int clusterCount = DICT_SIZE, attempts = 5, iterationNumber = 1e4;
 	sTime = clock();
 	cout << "Running kmeans..." << endl;
 	kmeans(allDescriptors, clusterCount, kLabels, TermCriteria(CV_TERMCRIT_ITER | CV_TERMCRIT_EPS, iterationNumber, 1e-4), attempts, KMEANS_PP_CENTERS, kCenters);
 	cout << "-> kmeans run in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
 
-	FileStorage storage("kmeans-starfish,sunflower,crab,trilobite.yml", FileStorage::WRITE);
+	/*FileStorage storage("kmeans-starfish,sunflower,crab,trilobite.yml", FileStorage::WRITE);
 	storage << "kLabels" << kLabels << "kCenters" << kCenters;
 	storage.release();*/
 
 	sTime = clock();
-	cout << "Loading kmeans data..." << endl;
+	/*cout << "Loading kmeans data..." << endl;
 	FileStorage storage("kmeans-starfish,sunflower,crab,trilobite.yml", FileStorage::READ);
 	storage["kLabels"] >> kLabels;
 	storage["kCenters"] >> kCenters;
 	storage.release();
-	cout << "-> kmeans data loaded in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;
+	cout << "-> kmeans data loaded in " << (clock() - sTime) / double(CLOCKS_PER_SEC) << " Second(s)." << endl;*/
 
 	sTime = clock();
 	cout << "Finding histograms..." << endl;
