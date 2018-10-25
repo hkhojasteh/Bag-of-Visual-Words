@@ -88,4 +88,3 @@ script:
   - |
     cd C++
     make
-    make test
