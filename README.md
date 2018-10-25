@@ -11,16 +11,20 @@ The program will generate a visual vocabulary and train a classifier using a use
 
 The learning consists of:
 
-1. Extracting local features of all the dataset image with SIFT feature extractor
-2. Generating a codebook of visual words with clustering of the features
-3. Aggregating the histograms of the visual words for each of the traning images
-4. Feeding the histograms to the SVM classifier to train a model
+1.
+    Extracting local features of all the dataset image with SIFT feature extractor
+2.
+    Generating a codebook of visual words with clustering of the features
+3.
+    Aggregating the histograms of the visual words for each of the traning images
+4.
+    Feeding the histograms to the SVM classifier to train a model
 
 This code relies on:
 
- - SIFT features for local features
- - k-means for generation of the words via clustering
- - SVM as classifier using the OpenCV library
+- SIFT features for local features
+- k-means for generation of the words via clustering
+- SVM as classifier using the OpenCV library
 
 The example dataset used in this project is [Caltech 101 dataset][1].
 <center><img src="./README_files/Caltech-101.jpg"><p style="color: #666;">
