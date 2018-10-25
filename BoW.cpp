@@ -35,7 +35,7 @@ Mat allDescriptors;
 vector<Mat> allDescPerImg;
 vector<int> allClassPerImg;
 int allDescPerImgNum = 0;
-void readDetectComputeimage(const string className, int imageNumbers, int classLable) {
+void readDetectComputeimage(const string& className, int imageNumbers, int classLable) {
 #pragma omp parallel
 {
 #pragma omp for schedule(dynamic) ordered
@@ -95,7 +95,7 @@ Mat getDataVector(Mat descriptors) {
 
 Mat inputData;
 Mat inputDataLables;
-void getHistogram(const string className, int imageNumbers, int classLable) {
+void getHistogram(const string& className, int imageNumbers, int classLable) {
 #pragma omp parallel
 {
 #pragma omp for schedule(dynamic) ordered
@@ -145,7 +145,7 @@ void getHistogramFast() {
 }
 
 Ptr<SVM> svm;
-double testData(const string className, int imageNumbers, int classLable) {
+double testData(const string& className, int imageNumbers, int classLable) {
 	int allTests = 0;
 	int correctTests = 0;
 #pragma omp parallel
