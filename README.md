@@ -2,7 +2,7 @@
 <center><img src="./README_files/Header.png"><p style="color: #666;">
 An example of a typical bag of words classification pipeline refer to content based image classifier using the <a href="https://en.wikipedia.org/wiki/Bag-of-words_model_in_computer_vision">bag of visual words model</a> in C++ with OpenCV.</p><p></p></center>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1fb6ef7801d041038721ebd75b433d39)](https://app.codacy.com/app/hkhojasteh/Bag-of-Visual-Words?utm_source=github.com&utm_medium=referral&utm_content=hkhojasteh/Bag-of-Visual-Words&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1fb6ef7801d041038721ebd75b433d39)](https://app.codacy.com/app/hkhojasteh/Bag-of-Visual-Words?utm_source=github.com&utm_medium=referral&utm_content=hkhojasteh/Bag-of-Visual-Words&utm_campaign=Badge_Grade_Settings) [![HitCount](http://hits.dwyl.io/hkhojasteh/Bag-of-Visual-Words.svg)](http://hits.dwyl.io/hkhojasteh/Bag-of-Visual-Words)
 
 <h2>Overview</h2> 
 The goal of this project is to introduce you to image recognition. Specifically, we will examine the task of scene recognition starting with very simple methods - tiny images and nearest neighbor classification - and then move on to techniques that resemble the bags of quantized local features and linear classifiers learned by support vector machines (SVM).
