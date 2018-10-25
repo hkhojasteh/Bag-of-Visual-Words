@@ -34,6 +34,9 @@ The example dataset used in this project is [Caltech 101 dataset][1].
 Example images from of each category of Caltech 101.</p><p></p></center>
 
 ## Author
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1fb6ef7801d041038721ebd75b433d39)](https://app.codacy.com/app/hkhojasteh/Bag-of-Visual-Words?utm_source=github.com&utm_medium=referral&utm_content=hkhojasteh/Bag-of-Visual-Words&utm_campaign=Badge_Grade_Settings)
+
 [Hadi Abdi Khojasteh](http://hadiabdikhojasteh.ir)
 
 ## Copyright
